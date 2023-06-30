@@ -2,7 +2,7 @@ package org.cbtw;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCases {
 
@@ -13,7 +13,7 @@ public class TestCases {
         final String decryptedMessage = "the five boxing wizards jump quickly";
 
         final String result = new CaesarCipher().decipher(encryptedMessage, key);
-        assertTrue(result.equals(decryptedMessage));
+        assertEquals(result, decryptedMessage);
     }
 
     @Test
@@ -23,7 +23,7 @@ public class TestCases {
         final String decryptedMessage = "this is a secret";
 
         final String result = new CaesarCipher().decipher(encryptedMessage, key);
-        assertTrue(result.equals(decryptedMessage));
+        assertEquals(result, decryptedMessage);
     }
 
     @Test
@@ -33,8 +33,17 @@ public class TestCases {
         final String decryptedMessage = "this-is-a-secret";
 
         final String result = new CaesarCipher().decipher(encryptedMessage, key);
-        System.out.println("Result: " + result);
-        assertTrue(result.equals(decryptedMessage));
+        assertEquals(result, decryptedMessage);
+    }
+
+    @Test
+    void testEmptyMessage() {
+        final String key = "the quick brown fox jumps over the lazy dog";
+        final String encryptedMessage = "  ";
+        final String decryptedMessage = "  ";
+
+        final String result = new CaesarCipher().decipher(encryptedMessage, key);
+        assertEquals(result, decryptedMessage);
     }
 
 }
